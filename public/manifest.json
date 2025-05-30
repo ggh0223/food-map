@@ -1,18 +1,19 @@
 {
-  "name": "NextJS Game",
-  "short_name": "Game",
+  "name": "Food Map",
+  "short_name": "Food Map",
+  "description": "Food Map Application",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "description": "간단한 PWA 게임",
+  "theme_color": "#000000",
   "icons": [
     {
-      "src": "/icons/icon-192x192.png",
+      "src": "/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/icons/icon-512x512.png",
+      "src": "/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
