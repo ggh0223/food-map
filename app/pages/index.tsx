@@ -1,12 +1,10 @@
-"use client";
-
 import FloorMap from "@components/FloorMap";
 
 export default function Home() {
-  // overflow-hidden 추가
   return (
-    <main className="h-screen w-full relative bg-gray-100">
+    <div>
+      <h1>상가 도면 인터랙티브 맵</h1>
       <FloorMap />
-    </main>
+    </div>
   );
 }

@@ -1,0 +1,61 @@
+{
+  "floor1": [
+    {
+      "id": "shop1",
+      "points": "5,168 62,168 62,210 5,210",
+      "name": "사계애김밥",
+      "contact": "0507-1341-3090",
+      "description": "분식집",
+      "menuLinkUrl": null,
+      "menuImageUrl": "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20250213_258%2F1739420004121vsAaV_JPEG%2F1000086405.jpg",
+      "availableInLaunch": true,
+      "availableInDinner": true
+    },
+    {
+      "id": "shop2",
+      "points": "57,620 145,620 145,684 57,684",
+      "name": "이가네흑돼지",
+      "contact": "0507-1446-3323",
+      "description": "한식뷔페",
+      "menuLinkUrl": "https://pcmap.place.naver.com/restaurant/268601895/feed?feedType=feed",
+      "menuImageUrl": null,
+      "availableInLaunch": true,
+      "availableInDinner": false
+    },
+    {
+      "id": "shop3",
+      "points": "650,620 740,620 740,744 650,744",
+      "name": "동천한식뷔페",
+      "contact": "0507-1473-7913",
+      "description": "한식뷔페",
+      "menuLinkUrl": "https://pf.kakao.com/_xgUVZn/posts",
+      "menuImageUrl": null,
+      "availableInLaunch": true,
+      "availableInDinner": true
+    },
+    {
+      "id": "shop4",
+      "points": "200,300 230,300 230,230 200,230",
+      "name": "공릉동원조멸치국수",
+      "contact": "031-229-1666",
+      "description": "국수 만두",
+      "menuLinkUrl": null,
+      "menuImageUrl": "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNTAzMDRfMTAx%2FMDAxNzQxMDE0NzA1MzA2.kdKJftSSkr-Eq__YcvBRrthPbuzkmUM8r4THZpj8P34g.Eob18DDH5UEyuwTSAnt_-a_zsnqo6bLxNefu4p6RWKQg.JPEG%2FIMG_4619.jpg",
+      "availableInLaunch": true,
+      "availableInDinner": false
+    }
+  ],
+  "floor2": [
+    {
+      "id": "shop5",
+      "points": "482,58 562,58 562,148 482,148",
+      "name": "더식탁",
+      "contact": "-",
+      "description": "한식뷔페",
+      "menuLinkUrl": "https://www.instagram.com/the.siktak/",
+      "menuImageUrl": null,
+      "availableInLaunch": true,
+      "availableInDinner": false
+    }
+  ]
+}
