@@ -35,7 +35,7 @@
     },
     {
       "id": "shop4",
-      "points": "200,300 230,300 230,230 200,230",
+      "points": "200,228 231,228 231,301 200,301",
       "name": "공릉동원조멸치국수",
       "contact": "031-229-1666",
       "description": "국수 만두",
@@ -56,6 +56,66 @@
       "menuImageUrl": null,
       "availableInLaunch": true,
       "availableInDinner": false
+    },
+    {
+      "id": "shop1749105042560",
+      "points": "182,62 223,62 223,148 182,148",
+      "name": "국밥",
+      "contact": "-",
+      "description": "국밥",
+      "menuLinkUrl": null,
+      "menuImageUrl": null,
+      "availableInLaunch": true,
+      "availableInDinner": true,
+      "floor": "floor2"
+    },
+    {
+      "id": "shop1749105187452",
+      "points": "337,58 418,58 418,148 337,148",
+      "name": "직화숯불구이",
+      "contact": "-",
+      "description": "직화숯불구이",
+      "menuLinkUrl": null,
+      "menuImageUrl": null,
+      "availableInLaunch": true,
+      "availableInDinner": true,
+      "floor": "floor2"
+    },
+    {
+      "id": "shop1749105363336",
+      "points": "417,58 481,58 481,149 417,149",
+      "name": "칼국시",
+      "contact": "칼국시",
+      "description": "칼국시",
+      "menuLinkUrl": null,
+      "menuImageUrl": null,
+      "availableInLaunch": true,
+      "availableInDinner": true,
+      "floor": "floor2"
+    },
+    {
+      "id": "shop1749106403975",
+      "points": "648,60 727,60 727,147 648,147",
+      "name": "바름",
+      "contact": "-",
+      "description": "한식",
+      "menuLinkUrl": null,
+      "menuImageUrl": null,
+      "availableInLaunch": true,
+      "availableInDinner": true,
+      "floor": "floor2"
+    },
+    {
+      "id": "shop1749106441290",
+      "points": "604,171 644,171 644,225 604,225",
+      "name": "한솥",
+      "contact": "-",
+      "description": "한식 도시락",
+      "menuLinkUrl": null,
+      "menuImageUrl": null,
+      "availableInLaunch": true,
+      "availableInDinner": true,
+      "floor": "floor2"
     }
   ]
 }

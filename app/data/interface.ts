@@ -8,4 +8,5 @@ export type Shop = {
   menuImageUrl: string | null;
   availableInLaunch: boolean;
   availableInDinner: boolean;
+  floor?: "floor1" | "floor2";
 };
