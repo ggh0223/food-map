@@ -4,10 +4,24 @@
       "id": "shop1",
       "points": "5,168 62,168 62,210 5,210",
       "name": "사계애김밥",
+      "logoUrl": "",
       "contact": "0507-1341-3090",
       "description": "분식집",
       "menuLinkUrl": null,
-      "menuImageUrl": "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20250213_258%2F1739420004121vsAaV_JPEG%2F1000086405.jpg",
+      "menuList": [
+        {
+          "name": "참치김밥",
+          "price": "3500"
+        },
+        {
+          "name": "치즈김밥",
+          "price": "4000"
+        },
+        {
+          "name": "라볶이",
+          "price": "5000"
+        }
+      ],
       "availableInLaunch": true,
       "availableInDinner": true
     },
@@ -15,10 +29,12 @@
       "id": "shop2",
       "points": "57,620 145,620 145,684 57,684",
       "name": "이가네흑돼지",
+      "logoUrl": "",
+
       "contact": "0507-1446-3323",
       "description": "한식뷔페",
       "menuLinkUrl": "https://pcmap.place.naver.com/restaurant/268601895/feed?feedType=feed",
-      "menuImageUrl": null,
+      "menuList": null,
       "availableInLaunch": true,
       "availableInDinner": false
     },
@@ -26,10 +42,12 @@
       "id": "shop3",
       "points": "650,620 740,620 740,744 650,744",
       "name": "동천한식뷔페",
+      "logoUrl": "",
+
       "contact": "0507-1473-7913",
       "description": "한식뷔페",
       "menuLinkUrl": "https://pf.kakao.com/_xgUVZn/posts",
-      "menuImageUrl": null,
+      "menuList": null,
       "availableInLaunch": true,
       "availableInDinner": true
     },
@@ -37,10 +55,21 @@
       "id": "shop4",
       "points": "200,228 231,228 231,301 200,301",
       "name": "공릉동원조멸치국수",
+      "logoUrl": "",
+
       "contact": "031-229-1666",
-      "description": "국수 만두",
+      "description": "국수",
       "menuLinkUrl": null,
-      "menuImageUrl": "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNTAzMDRfMTAx%2FMDAxNzQxMDE0NzA1MzA2.kdKJftSSkr-Eq__YcvBRrthPbuzkmUM8r4THZpj8P34g.Eob18DDH5UEyuwTSAnt_-a_zsnqo6bLxNefu4p6RWKQg.JPEG%2FIMG_4619.jpg",
+      "menuList": [
+        {
+          "name": "멸치국수",
+          "price": "7000"
+        },
+        {
+          "name": "만두",
+          "price": "5000"
+        }
+      ],
       "availableInLaunch": true,
       "availableInDinner": false
     }
@@ -50,10 +79,12 @@
       "id": "shop5",
       "points": "482,58 562,58 562,148 482,148",
       "name": "더식탁",
+      "logoUrl": "",
+
       "contact": "-",
       "description": "한식뷔페",
       "menuLinkUrl": "https://www.instagram.com/the.siktak/",
-      "menuImageUrl": null,
+      "menuList": null,
       "availableInLaunch": true,
       "availableInDinner": false
     },
@@ -61,10 +92,17 @@
       "id": "shop1749105042560",
       "points": "182,62 223,62 223,148 182,148",
       "name": "국밥",
+      "logoUrl": "",
+
       "contact": "-",
       "description": "국밥",
       "menuLinkUrl": null,
-      "menuImageUrl": null,
+      "menuList": [
+        {
+          "name": "국밥",
+          "price": "7000"
+        }
+      ],
       "availableInLaunch": true,
       "availableInDinner": true,
       "floor": "floor2"
@@ -73,10 +111,21 @@
       "id": "shop1749105187452",
       "points": "337,58 418,58 418,148 337,148",
       "name": "직화숯불구이",
+      "logoUrl": "",
+
       "contact": "-",
       "description": "직화숯불구이",
       "menuLinkUrl": null,
-      "menuImageUrl": null,
+      "menuList": [
+        {
+          "name": "삼겹살",
+          "price": "15000"
+        },
+        {
+          "name": "목살",
+          "price": "15000"
+        }
+      ],
       "availableInLaunch": true,
       "availableInDinner": true,
       "floor": "floor2"
@@ -85,10 +134,17 @@
       "id": "shop1749105363336",
       "points": "417,58 481,58 481,149 417,149",
       "name": "칼국시",
+      "logoUrl": "",
+
       "contact": "칼국시",
       "description": "칼국시",
       "menuLinkUrl": null,
-      "menuImageUrl": null,
+      "menuList": [
+        {
+          "name": "칼국수",
+          "price": "8000"
+        }
+      ],
       "availableInLaunch": true,
       "availableInDinner": true,
       "floor": "floor2"
@@ -97,10 +153,21 @@
       "id": "shop1749106403975",
       "points": "648,60 727,60 727,147 648,147",
       "name": "바름",
+      "logoUrl": "",
+
       "contact": "-",
       "description": "한식",
       "menuLinkUrl": null,
-      "menuImageUrl": null,
+      "menuList": [
+        {
+          "name": "제육볶음",
+          "price": "8000"
+        },
+        {
+          "name": "된장찌개",
+          "price": "7000"
+        }
+      ],
       "availableInLaunch": true,
       "availableInDinner": true,
       "floor": "floor2"
@@ -109,10 +176,21 @@
       "id": "shop1749106441290",
       "points": "604,171 644,171 644,225 604,225",
       "name": "한솥",
+      "logoUrl": "",
+
       "contact": "-",
-      "description": "한식 도시락",
+      "description": "도시락",
       "menuLinkUrl": null,
-      "menuImageUrl": null,
+      "menuList": [
+        {
+          "name": "제육도시락",
+          "price": "5000"
+        },
+        {
+          "name": "치킨도시락",
+          "price": "5000"
+        }
+      ],
       "availableInLaunch": true,
       "availableInDinner": true,
       "floor": "floor2"

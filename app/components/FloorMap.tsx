@@ -1,7 +1,8 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import shopsData from "../data/shops.json";
 import type { Shop } from "@data/interface";
-import Image from "next/image";
+import ShopInputModal from "./ShopInputModal";
+import ShopInfo from "./ShopInfo";
 
 const floorKey = (floor: number): "floor1" | "floor2" => {
   return floor === 1 ? "floor1" : "floor2";
@@ -17,120 +18,6 @@ function parsePoints(points: string): { x: number; y: number }[] {
 // 배열을 points 문자열로 변환
 function pointsToString(points: { x: number; y: number }[]): string {
   return points.map((pt) => `${pt.x},${pt.y}`).join(" ");
-}
-
-function ShopInputModal({
-  open,
-  onClose,
-  onSubmit,
-  defaultValues,
-}: {
-  open: boolean;
-  onClose: () => void;
-  onSubmit: (data: {
-    name: string;
-    description: string;
-    contact: string;
-  }) => void;
-  defaultValues?: { name: string; description: string; contact: string };
-}) {
-  const [name, setName] = useState(defaultValues?.name || "");
-  const [description, setDescription] = useState(
-    defaultValues?.description || ""
-  );
-  const [contact, setContact] = useState(defaultValues?.contact || "");
-
-  // defaultValues가 바뀔 때마다 input 값 동기화
-  useEffect(() => {
-    setName(defaultValues?.name || "");
-    setDescription(defaultValues?.description || "");
-    setContact(defaultValues?.contact || "");
-  }, [defaultValues]);
-
-  if (!open) return null;
-  return (
-    <div
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100vw",
-        height: "100vh",
-        background: "rgba(0,0,0,0.3)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        zIndex: 1000,
-      }}
-      onClick={onClose}
-    >
-      <div
-        style={{
-          background: "#fff",
-          borderRadius: 8,
-          padding: 24,
-          minWidth: 300,
-        }}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <h2 style={{ fontSize: 20, marginBottom: 16 }}>상가 정보 입력</h2>
-        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-          <input
-            placeholder="상가 이름"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            style={{ padding: 8, borderRadius: 4, border: "1px solid #ddd" }}
-          />
-          <input
-            placeholder="설명"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            style={{ padding: 8, borderRadius: 4, border: "1px solid #ddd" }}
-          />
-          <input
-            placeholder="연락처"
-            value={contact}
-            onChange={(e) => setContact(e.target.value)}
-            style={{ padding: 8, borderRadius: 4, border: "1px solid #ddd" }}
-          />
-        </div>
-        <div
-          style={{
-            display: "flex",
-            gap: 8,
-            marginTop: 20,
-            justifyContent: "flex-end",
-          }}
-        >
-          <button
-            onClick={onClose}
-            style={{
-              padding: "8px 16px",
-              background: "#eee",
-              border: "none",
-              borderRadius: 4,
-              cursor: "pointer",
-            }}
-          >
-            취소
-          </button>
-          <button
-            onClick={() => onSubmit({ name, description, contact })}
-            style={{
-              padding: "8px 16px",
-              background: "#2563eb",
-              color: "#fff",
-              border: "none",
-              borderRadius: 4,
-              cursor: "pointer",
-            }}
-          >
-            확인
-          </button>
-        </div>
-      </div>
-    </div>
-  );
 }
 
 export default function FloorMap() {
@@ -151,19 +38,16 @@ export default function FloorMap() {
   const [dragOffset, setDragOffset] = useState<{ x: number; y: number } | null>(
     null
   );
-  const [shopsState, setShopsState] = useState<Shop[] | null>(null); // 임시 이동 상태
+  const [shopsState, setShopsState] = useState<Shop[] | null>(null);
   const [resizeTarget, setResizeTarget] = useState<{
     shopId: string;
     pointIdx: number;
   } | null>(null);
-  const [editShop, setEditShop] = useState<Shop | null>(null); // 수정할 상가
+  const [editShop, setEditShop] = useState<Shop | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
 
-  // localhost 체크
-  const isLocalhost =
-    typeof window !== "undefined" &&
-    (window.location.hostname === "localhost" ||
-      window.location.hostname === "127.0.0.1");
+  // 개발 환경에서만 관리자 모드 토글 버튼 표시
+  const isDevelopment = process.env.NODE_ENV === "development";
 
   const shops: Shop[] = (shopsState ||
     shopsData[floorKey(floor)] ||
@@ -274,10 +158,11 @@ export default function FloorMap() {
       id: `shop${Date.now()}`,
       points: pendingPoints,
       name,
+      logoUrl: "",
       contact,
       description,
       menuLinkUrl: null,
-      menuImageUrl: null,
+      menuList: null,
       availableInLaunch: true,
       availableInDinner: true,
       floor: floor === 1 ? "floor1" : "floor2",
@@ -346,24 +231,23 @@ export default function FloorMap() {
     const mouseX = (e.clientX - rect.left - offsetX) / scale;
     const mouseY = (e.clientY - rect.top - offsetY) / scale;
     // 이동할 거리 계산
-    const shopsArr = (
-      (shopsState || shopsData[floorKey(floor)] || []) as Shop[]
-    ).map((shop) => {
+    const shopsArr = (shopsState || shopsData[floorKey(floor)] || []) as Shop[];
+    const moved = shopsArr.map((shop) => {
       if (shop.id !== draggingShopId) return shop;
       const pointsArr = parsePoints(shop.points);
       // 첫 꼭짓점 기준으로 전체 이동
       const dx = mouseX - dragOffset.x - pointsArr[0].x;
       const dy = mouseY - dragOffset.y - pointsArr[0].y;
-      const moved = pointsArr.map((pt) => ({
+      const movedPoints = pointsArr.map((pt) => ({
         x: Math.round(pt.x + dx),
         y: Math.round(pt.y + dy),
       }));
       return {
         ...shop,
-        points: pointsToString(moved),
+        points: pointsToString(movedPoints),
       };
     });
-    setShopsState(shopsArr);
+    setShopsState(moved);
   };
 
   // 마우스 업 시 이동 종료 및 저장
@@ -371,8 +255,10 @@ export default function FloorMap() {
     if (!isAdminMode) return;
     if (!draggingShopId) return;
     // 이동된 shop만 PATCH
-    const movedShop = (shopsState || []).find((s) => s.id === draggingShopId);
-    if (movedShop) {
+    const movedShop = (shopsState ||
+      shopsData[floorKey(floor)] ||
+      []) as Shop[];
+    if (movedShop.length > 0) {
       try {
         await fetch("/api/shops", {
           method: "PATCH",
@@ -418,9 +304,8 @@ export default function FloorMap() {
     const offsetY = (rect.height - scaledHeight) / 2;
     const mouseX = (e.clientX - rect.left - offsetX) / scale;
     const mouseY = (e.clientY - rect.top - offsetY) / scale;
-    const shopsArr = (
-      (shopsState || shopsData[floorKey(floor)] || []) as Shop[]
-    ).map((shop) => {
+    const shopsArr = (shopsState || shopsData[floorKey(floor)] || []) as Shop[];
+    const resized = shopsArr.map((shop) => {
       if (shop.id !== resizeTarget.shopId) return shop;
       const pointsArr = parsePoints(shop.points);
       // 직사각형 유지: points[0] 고정, 나머지 꼭짓점 자동 계산
@@ -435,17 +320,17 @@ export default function FloorMap() {
       ];
       return { ...shop, points: pointsToString(newPoints) };
     });
-    setShopsState(shopsArr);
+    setShopsState(resized);
   };
 
   // 핸들 드래그 종료
   const handleSVGResizeUp = async () => {
     if (!isAdminMode) return;
     if (!resizeTarget) return;
-    const resizedShop = (shopsState || []).find(
-      (s) => s.id === resizeTarget.shopId
-    );
-    if (resizedShop) {
+    const resizedShop = (shopsState ||
+      shopsData[floorKey(floor)] ||
+      []) as Shop[];
+    if (resizedShop.length > 0) {
       try {
         await fetch("/api/shops", {
           method: "PATCH",
@@ -519,13 +404,12 @@ export default function FloorMap() {
     <div
       style={{
         width: "100%",
-        // maxWidth: "500px",
         margin: "0 auto",
         padding: "20px",
       }}
     >
-      {/* 관리자 모드 토글 버튼 - localhost에서만 표시 */}
-      {isLocalhost && (
+      {/* 관리자 모드 토글 버튼 */}
+      {isDevelopment && (
         <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
           <button
             onClick={handleAdminModeToggle}
@@ -622,11 +506,23 @@ export default function FloorMap() {
             <g key={shop.id}>
               <polygon
                 points={shop.points}
-                fill="rgba(0,0,255,0.3)"
-                stroke="#000"
+                fill={
+                  isAdminMode ? "rgba(0,0,255,0.3)" : "rgba(255, 255, 255, 0)"
+                }
+                // stroke="#000"
+                onClick={() => handleClick(shop.id)}
+              />
+              <image
+                href={shop.logoUrl ? shop.logoUrl : "/icon-192x192.png"}
+                x={(pointsArr[0].x + pointsArr[2].x) / 2 - 15}
+                y={(pointsArr[0].y + pointsArr[2].y) / 2 - 15}
+                width={30}
+                height={30}
                 onClick={() => handleClick(shop.id)}
                 onMouseDown={(e) => handlePolygonMouseDown(e, shop)}
-                style={{ cursor: isAdminMode ? "move" : "pointer" }}
+                style={{
+                  cursor: isAdminMode ? "move" : "pointer",
+                }}
               />
               {/* 오른쪽 하단 꼭짓점 핸들 */}
               {isAdminMode && pointsArr.length > 0 && (
@@ -657,92 +553,12 @@ export default function FloorMap() {
           />
         )}
       </svg>
-      {selectedShop && (
-        <div
-          style={{
-            // marginTop: 5,
-            padding: 16,
-            background: "#fff",
-            borderRadius: 8,
-          }}
-        >
-          <h1 style={{ fontSize: 24, fontWeight: 600 }}>{selectedShop.name}</h1>
-          <div style={{ display: "flex", gap: 16 }}>
-            <div
-              style={{
-                flex: 1,
-              }}
-            >
-              <p>{selectedShop.description}</p>
-              <p>{selectedShop.contact}</p>
-            </div>
-
-            <div style={{ width: 1, background: "#ddd" }} />
-
-            <div style={{ flex: 1 }}>
-              {selectedShop.menuImageUrl && (
-                <Image
-                  src={selectedShop.menuImageUrl}
-                  alt={selectedShop.name}
-                  width={100}
-                  height={100}
-                />
-              )}
-              {selectedShop.menuLinkUrl && (
-                <a
-                  href={selectedShop.menuLinkUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: 4,
-                    color: "#2563eb",
-                    textDecoration: "none",
-                    marginTop: 8,
-                  }}
-                >
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                    <polyline points="15 3 21 3 21 9" />
-                    <line x1="10" y1="14" x2="21" y2="3" />
-                  </svg>
-                  메뉴 보기
-                </a>
-              )}
-            </div>
-          </div>
-          {/* <button
-            onClick={() => setSelectedShop(null)}
-            style={{
-              marginTop: 16,
-              padding: "8px 16px",
-              background: "#2563eb",
-              color: "#fff",
-              border: "none",
-              borderRadius: 6,
-              cursor: "pointer",
-            }}
-          >
-            닫기
-          </button> */}
-        </div>
-      )}
+      {selectedShop && <ShopInfo shop={selectedShop} />}
       <ShopInputModal
         open={showInputModal}
         onClose={handleModalClose}
         onSubmit={handleModalSubmit}
       />
-      {/* 상가 정보 수정 모달 (관리자 모드) */}
       <ShopInputModal
         open={!!editShop}
         onClose={handleEditModalClose}

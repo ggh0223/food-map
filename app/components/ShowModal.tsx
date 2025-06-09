@@ -1,5 +1,4 @@
 import type { Shop } from "@data/interface";
-import Image from "next/image";
 
 export default function ShopModal({
   shop,
@@ -27,13 +26,12 @@ export default function ShopModal({
       <p>{shop.description}</p>
       <p>{shop.contact}</p>
       <p>{shop.menuLinkUrl}</p>
-      {shop.menuImageUrl && (
-        <Image
-          src={shop.menuImageUrl}
-          alt={shop.name}
-          width={200}
-          height={200}
-        />
+      {shop.menuList && (
+        <div>
+          {shop.menuList.map((menu) => (
+            <div key={menu.name}>{menu.name}</div>
+          ))}
+        </div>
       )}
 
       <button onClick={onClose}>닫기</button>
