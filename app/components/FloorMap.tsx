@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import Image from "next/image";
 import shopsData from "../data/shops.json";
 import type { Shop } from "@data/interface";
 import ShopInputModal from "./ShopInputModal";
@@ -507,9 +508,14 @@ export default function FloorMap() {
               <polygon
                 points={shop.points}
                 fill={
-                  isAdminMode ? "rgba(0,0,255,0.3)" : "rgba(255, 255, 255, 0)"
+                  selectedShop?.id === shop.id
+                    ? "rgba(37, 99, 235, 0.3)"
+                    : isAdminMode
+                    ? "rgba(0,0,255,0.3)"
+                    : "rgba(255, 255, 255, 0)"
                 }
-                // stroke="#000"
+                stroke={selectedShop?.id === shop.id ? "#2563eb" : "none"}
+                strokeWidth={2}
                 onClick={() => handleClick(shop.id)}
               />
               <image
@@ -522,6 +528,10 @@ export default function FloorMap() {
                 onMouseDown={(e) => handlePolygonMouseDown(e, shop)}
                 style={{
                   cursor: isAdminMode ? "move" : "pointer",
+                  filter:
+                    selectedShop?.id === shop.id
+                      ? "drop-shadow(0 0 4px rgba(37, 99, 235, 0.5))"
+                      : "none",
                 }}
               />
               {/* 오른쪽 하단 꼭짓점 핸들 */}
@@ -553,6 +563,60 @@ export default function FloorMap() {
           />
         )}
       </svg>
+
+      {/* 가게 리스트 */}
+      <div style={{ marginTop: 20 }}>
+        <h2 style={{ fontSize: 20, fontWeight: 600, marginBottom: 12 }}>
+          {floor}층 상가 목록
+        </h2>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+            gap: 16,
+          }}
+        >
+          {shops.map((shop) => (
+            <div
+              key={shop.id}
+              onClick={() => setSelectedShop(shop)}
+              style={{
+                padding: 16,
+                background: "#fff",
+                borderRadius: 8,
+                boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+                cursor: "pointer",
+                transition: "all 0.2s",
+                border:
+                  selectedShop?.id === shop.id
+                    ? "2px solid #2563eb"
+                    : "1px solid #e5e7eb",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                <Image
+                  src={shop.logoUrl || "/icon-192x192.png"}
+                  alt={shop.name}
+                  width={40}
+                  height={40}
+                  style={{ borderRadius: 8 }}
+                />
+                <div>
+                  <h3
+                    style={{ fontSize: 16, fontWeight: 600, marginBottom: 4 }}
+                  >
+                    {shop.name}
+                  </h3>
+                  <p style={{ fontSize: 14, color: "#6b7280" }}>
+                    {shop.description}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {selectedShop && <ShopInfo shop={selectedShop} />}
       <ShopInputModal
         open={showInputModal}
