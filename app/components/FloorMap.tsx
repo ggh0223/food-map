@@ -25,6 +25,11 @@ export default function FloorMap() {
   const [selectedShop, setSelectedShop] = useState<Shop | null>(null);
   const [isDrawerClosed, setIsDrawerClosed] = useState(false);
   const [floor, setFloor] = useState(1);
+  const [filters, setFilters] = useState({
+    launch: true,
+    dinner: true,
+    type: "전체" as "전체" | Shop["type"],
+  });
   const [isDrawing, setIsDrawing] = useState(false);
   const [startPoint, setStartPoint] = useState<{ x: number; y: number } | null>(
     null
@@ -54,6 +59,18 @@ export default function FloorMap() {
   const shops: Shop[] = (shopsState ||
     shopsData[floorKey(floor)] ||
     []) as Shop[];
+
+  const filteredShops = shops.filter((shop) => {
+    // 시간대 필터링
+    const timeFilter =
+      (filters.launch && shop.availableInLaunch) ||
+      (filters.dinner && shop.availableInDinner);
+
+    // 음식 타입 필터링
+    const typeFilter = filters.type === "전체" || shop.type === filters.type;
+
+    return timeFilter && typeFilter;
+  });
 
   const handleShopSelect = (shop: Shop) => {
     setSelectedShop(shop);
@@ -167,6 +184,7 @@ export default function FloorMap() {
       name,
       logoUrl: "",
       contact,
+      type: "한식",
       description,
       menuLinkUrl: null,
       menuList: null,
@@ -434,6 +452,7 @@ export default function FloorMap() {
               : "pointer"
             : "default",
           // filter: "var(--svg-filter)",
+          background: "#fff",
         }}
         onMouseDown={handleMouseDown}
         onMouseMove={(e) => {
@@ -594,10 +613,12 @@ export default function FloorMap() {
       </div>
 
       <ShopList
-        shops={shops}
+        shops={filteredShops}
         selectedShop={selectedShop}
         onShopSelect={handleShopSelect}
         floor={floor}
+        filters={filters}
+        onFilterChange={setFilters}
       />
 
       {selectedShop && (

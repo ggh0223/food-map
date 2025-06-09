@@ -10,4 +10,5 @@ export type Shop = {
   availableInLaunch: boolean;
   availableInDinner: boolean;
   floor?: "floor1" | "floor2";
+  type: "한식" | "분식" | "뷔페"; // | "중식" | "일식" | "양식" |  "기타";
 };

@@ -4,9 +4,10 @@
       "id": "shop1",
       "points": "5,168 62,168 62,210 5,210",
       "name": "사계애김밥",
-      "logoUrl": "",
+      "logoUrl": "/logo/4season.png",
       "contact": "0507-1341-3090",
       "description": "분식집",
+      "type": "분식",
       "menuLinkUrl": null,
       "menuList": [
         {
@@ -29,10 +30,10 @@
       "id": "shop2",
       "points": "57,620 145,620 145,684 57,684",
       "name": "이가네흑돼지",
-      "logoUrl": "",
-
+      "logoUrl": "/logo/blackpig.png",
       "contact": "0507-1446-3323",
       "description": "한식뷔페",
+      "type": "뷔페",
       "menuLinkUrl": "https://pcmap.place.naver.com/restaurant/268601895/feed?feedType=feed",
       "menuList": null,
       "availableInLaunch": true,
@@ -42,10 +43,10 @@
       "id": "shop3",
       "points": "650,620 740,620 740,744 650,744",
       "name": "동천한식뷔페",
-      "logoUrl": "",
-
+      "logoUrl": "/logo/dongcheon.png",
       "contact": "0507-1473-7913",
       "description": "한식뷔페",
+      "type": "뷔페",
       "menuLinkUrl": "https://pf.kakao.com/_xgUVZn/posts",
       "menuList": null,
       "availableInLaunch": true,
@@ -55,10 +56,10 @@
       "id": "shop4",
       "points": "200,228 231,228 231,301 200,301",
       "name": "공릉동원조멸치국수",
-      "logoUrl": "",
-
+      "logoUrl": "/logo/anchovy.png",
       "contact": "031-229-1666",
       "description": "국수",
+      "type": "한식",
       "menuLinkUrl": null,
       "menuList": [
         {
@@ -79,10 +80,10 @@
       "id": "shop5",
       "points": "482,58 562,58 562,148 482,148",
       "name": "더식탁",
-      "logoUrl": "",
-
+      "logoUrl": "/logo/thesiktak.png",
       "contact": "-",
       "description": "한식뷔페",
+      "type": "뷔페",
       "menuLinkUrl": "https://www.instagram.com/the.siktak/",
       "menuList": null,
       "availableInLaunch": true,
@@ -91,11 +92,11 @@
     {
       "id": "shop1749105042560",
       "points": "182,62 223,62 223,148 182,148",
-      "name": "국밥",
-      "logoUrl": "",
-
-      "contact": "-",
+      "name": "부산이가돼지국밥",
+      "logoUrl": "/logo/busan.png",
+      "contact": "031-525-3335",
       "description": "국밥",
+      "type": "한식",
       "menuLinkUrl": null,
       "menuList": [
         {
@@ -110,11 +111,11 @@
     {
       "id": "shop1749105187452",
       "points": "337,58 418,58 418,148 337,148",
-      "name": "직화숯불구이",
-      "logoUrl": "",
-
-      "contact": "-",
-      "description": "직화숯불구이",
+      "name": "소담",
+      "logoUrl": "/logo/sodam.png",
+      "contact": "031-525-3377",
+      "description": "직화볶음",
+      "type": "한식",
       "menuLinkUrl": null,
       "menuList": [
         {
@@ -133,11 +134,11 @@
     {
       "id": "shop1749105363336",
       "points": "417,58 481,58 481,149 417,149",
-      "name": "칼국시",
-      "logoUrl": "",
-
-      "contact": "칼국시",
-      "description": "칼국시",
+      "name": "명동칼국수",
+      "logoUrl": "/logo/kalnoodle.png",
+      "contact": "0507-1468-3325",
+      "description": "칼국수",
+      "type": "한식",
       "menuLinkUrl": null,
       "menuList": [
         {
@@ -153,10 +154,10 @@
       "id": "shop1749106403975",
       "points": "648,60 727,60 727,147 648,147",
       "name": "바름",
-      "logoUrl": "",
-
-      "contact": "-",
+      "logoUrl": "/logo/bareum.png",
+      "contact": "031-525-3838",
       "description": "한식",
+      "type": "한식",
       "menuLinkUrl": null,
       "menuList": [
         {
@@ -176,10 +177,10 @@
       "id": "shop1749106441290",
       "points": "604,171 644,171 644,225 604,225",
       "name": "한솥",
-      "logoUrl": "",
-
-      "contact": "-",
+      "logoUrl": "/logo/hansot.png",
+      "contact": "031-525-3322",
       "description": "도시락",
+      "type": "한식",
       "menuLinkUrl": null,
       "menuList": [
         {
