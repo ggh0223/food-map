@@ -1,9 +1,9 @@
 import { useState, useRef } from "react";
-import Image from "next/image";
 import shopsData from "../data/shops.json";
 import type { Shop } from "@data/interface";
 import ShopInputModal from "./ShopInputModal";
 import ShopInfo from "./ShopInfo";
+import ShopList from "./ShopList";
 
 const floorKey = (floor: number): "floor1" | "floor2" => {
   return floor === 1 ? "floor1" : "floor2";
@@ -23,6 +23,7 @@ function pointsToString(points: { x: number; y: number }[]): string {
 
 export default function FloorMap() {
   const [selectedShop, setSelectedShop] = useState<Shop | null>(null);
+  const [isDrawerClosed, setIsDrawerClosed] = useState(false);
   const [floor, setFloor] = useState(1);
   const [isDrawing, setIsDrawing] = useState(false);
   const [startPoint, setStartPoint] = useState<{ x: number; y: number } | null>(
@@ -53,6 +54,11 @@ export default function FloorMap() {
   const shops: Shop[] = (shopsState ||
     shopsData[floorKey(floor)] ||
     []) as Shop[];
+
+  const handleShopSelect = (shop: Shop) => {
+    setSelectedShop(shop);
+    setIsDrawerClosed(false);
+  };
 
   const handleClick = (id: string) => {
     const shop = shops.find((s) => s.id === id);
@@ -406,60 +412,10 @@ export default function FloorMap() {
       style={{
         width: "100%",
         margin: "0 auto",
-        padding: "20px",
+        padding: "0px 20px",
         color: "var(--text-color)",
       }}
     >
-      {/* 관리자 모드 토글 버튼 */}
-      {isDevelopment && (
-        <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
-          <button
-            onClick={handleAdminModeToggle}
-            style={{
-              padding: "8px 16px",
-              background: isAdminMode ? "#dc2626" : "var(--button-bg)",
-              color: isAdminMode ? "#fff" : "var(--button-text)",
-              border: "1px solid #dc2626",
-              borderRadius: 6,
-              fontWeight: 600,
-              cursor: "pointer",
-            }}
-          >
-            {isAdminMode ? "관리자 모드 끄기" : "관리자 모드 켜기"}
-          </button>
-        </div>
-      )}
-      {/* 층 선택 버튼 */}
-      <div style={{ display: "flex", gap: 8 }}>
-        <button
-          onClick={() => handleFloorChange(1)}
-          style={{
-            padding: "8px 16px",
-            background: floor === 1 ? "#2563eb" : "var(--button-bg)",
-            color: floor === 1 ? "#fff" : "var(--button-text)",
-            border: "1px solid #2563eb",
-            borderRadius: 6,
-            fontWeight: 600,
-            cursor: "pointer",
-          }}
-        >
-          1층
-        </button>
-        <button
-          onClick={() => handleFloorChange(2)}
-          style={{
-            padding: "8px 16px",
-            background: floor === 2 ? "#2563eb" : "var(--button-bg)",
-            color: floor === 2 ? "#fff" : "var(--button-text)",
-            border: "1px solid #2563eb",
-            borderRadius: 6,
-            fontWeight: 600,
-            cursor: "pointer",
-          }}
-        >
-          2층
-        </button>
-      </div>
       <svg
         ref={svgRef}
         viewBox="0 0 1000 800"
@@ -477,7 +433,7 @@ export default function FloorMap() {
               ? "nwse-resize"
               : "pointer"
             : "default",
-          filter: "var(--svg-filter)",
+          // filter: "var(--svg-filter)",
         }}
         onMouseDown={handleMouseDown}
         onMouseMove={(e) => {
@@ -566,60 +522,70 @@ export default function FloorMap() {
         )}
       </svg>
 
-      {/* 가게 리스트 */}
-      <div style={{ marginTop: 20 }}>
-        <h2 style={{ fontSize: 20, fontWeight: 600, marginBottom: 12 }}>
-          {floor}층 상가 목록
-        </h2>
-        <div
+      {/* 층 선택 버튼 */}
+      <div style={{ display: "flex", gap: 4, justifyContent: "flex-end" }}>
+        <button
+          onClick={() => handleFloorChange(1)}
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
-            gap: 16,
+            padding: "8px 16px",
+            background: floor === 1 ? "#2563eb" : "var(--button-bg)",
+            color: floor === 1 ? "#fff" : "var(--button-text)",
+            border: "1px solid #2563eb",
+            borderRadius: 6,
+            fontWeight: 600,
+            cursor: "pointer",
           }}
         >
-          {shops.map((shop) => (
-            <div
-              key={shop.id}
-              onClick={() => setSelectedShop(shop)}
-              style={{
-                padding: 16,
-                background: "var(--card-bg)",
-                borderRadius: 8,
-                boxShadow: "var(--card-shadow)",
-                cursor: "pointer",
-                transition: "all 0.2s",
-                border:
-                  selectedShop?.id === shop.id
-                    ? "2px solid #2563eb"
-                    : "1px solid var(--border-color)",
-              }}
-            >
-              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                <Image
-                  src={shop.logoUrl || "/icon-192x192.png"}
-                  alt={shop.name}
-                  width={40}
-                  height={40}
-                  style={{ borderRadius: 8 }}
-                />
-                <div>
-                  <h3
-                    style={{ fontSize: 16, fontWeight: 600, marginBottom: 4 }}
-                  >
-                    {shop.name}
-                  </h3>
-                  <p style={{ fontSize: 14, color: "var(--text-secondary)" }}>
-                    {shop.description}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+          1층
+        </button>
+        <button
+          onClick={() => handleFloorChange(2)}
+          style={{
+            padding: "8px 16px",
+            background: floor === 2 ? "#2563eb" : "var(--button-bg)",
+            color: floor === 2 ? "#fff" : "var(--button-text)",
+            border: "1px solid #2563eb",
+            borderRadius: 6,
+            fontWeight: 600,
+            cursor: "pointer",
+          }}
+        >
+          2층
+        </button>
+        {isDevelopment && (
+          <button
+            onClick={handleAdminModeToggle}
+            style={{
+              padding: "8px 16px",
+              background: isAdminMode ? "#dc2626" : "var(--button-bg)",
+              color: isAdminMode ? "#fff" : "var(--button-text)",
+              border: "1px solid #dc2626",
+              borderRadius: 6,
+              fontWeight: 600,
+              cursor: "pointer",
+            }}
+          >
+            {isAdminMode ? "관리자" : "관리자"}
+          </button>
+        )}
       </div>
 
-      {selectedShop && <ShopInfo shop={selectedShop} />}
+      <ShopList
+        shops={shops}
+        selectedShop={selectedShop}
+        onShopSelect={handleShopSelect}
+        floor={floor}
+      />
+
+      {selectedShop && (
+        <ShopInfo
+          shop={selectedShop}
+          onClose={() => setIsDrawerClosed(true)}
+          onReopen={() => setIsDrawerClosed(false)}
+          isClosed={isDrawerClosed}
+        />
+      )}
+
       <ShopInputModal
         open={showInputModal}
         onClose={handleModalClose}
