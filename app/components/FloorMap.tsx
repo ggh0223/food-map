@@ -524,6 +524,30 @@ export default function FloorMap() {
 
       {/* 층 선택 버튼 */}
       <div style={{ display: "flex", gap: 4, justifyContent: "flex-end" }}>
+        {selectedShop && isDrawerClosed && (
+          <button
+            onClick={() => setIsDrawerClosed(false)}
+            style={{
+              position: "fixed",
+              left: 0,
+              transform: "translateY(-50%)",
+              background: "var(--card-bg)",
+              border: "none",
+              borderRight: "1px solid var(--border-color)",
+              padding: "12px",
+              cursor: "pointer",
+              boxShadow: "2px 0 8px rgba(0,0,0,0.1)",
+              zIndex: 998,
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              color: "var(--text-color)",
+            }}
+          >
+            <span>{selectedShop.name}</span>
+            <span>▶</span>
+          </button>
+        )}
         <button
           onClick={() => handleFloorChange(1)}
           style={{

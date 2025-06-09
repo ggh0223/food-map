@@ -9,12 +9,7 @@ interface ShopInfoProps {
   isClosed: boolean;
 }
 
-export default function ShopInfo({
-  shop,
-  onClose,
-  onReopen,
-  isClosed,
-}: ShopInfoProps) {
+export default function ShopInfo({ shop, onClose, isClosed }: ShopInfoProps) {
   const [isClosing, setIsClosing] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -36,33 +31,7 @@ export default function ShopInfo({
   };
 
   if (isClosed) {
-    return (
-      <button
-        onClick={onReopen}
-        style={{
-          position: "fixed",
-          left: 0,
-          top: "42%",
-          transform: "translateY(-50%)",
-          background: "var(--card-bg)",
-          border: "none",
-          borderRight: "1px solid var(--border-color)",
-          padding: "12px",
-          cursor: "pointer",
-          boxShadow: "2px 0 8px rgba(0,0,0,0.1)",
-          zIndex: 998,
-          display: "flex",
-          alignItems: "center",
-          gap: "8px",
-          color: "var(--text-color)",
-        }}
-      >
-        {/* <span style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}>
-          {shop.name}
-        </span> */}
-        <span>▶</span>
-      </button>
-    );
+    return null;
   }
 
   return (
@@ -146,30 +115,112 @@ export default function ShopInfo({
           <p style={{ color: "var(--text-secondary)", marginBottom: "8px" }}>
             {shop.description}
           </p>
-          <p style={{ color: "var(--text-color)", fontWeight: 500 }}>
-            연락처: {shop.contact}
-          </p>
+          <div
+            style={{ display: "flex", flexDirection: "column", gap: "16px" }}
+          >
+            <div
+              style={{
+                borderBottom: "2px solid var(--border-color)",
+                paddingBottom: "8px",
+                marginBottom: "8px",
+              }}
+            >
+              <span
+                style={{
+                  fontSize: "18px",
+                  fontWeight: 600,
+                  color: "var(--text-color)",
+                }}
+              >
+                연락처: {shop.contact}
+              </span>
+            </div>
+          </div>
         </div>
-
-        {shop.menuLinkUrl && (
-          <a
-            href={shop.menuLinkUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+        <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+          <div
             style={{
-              display: "inline-block",
-              padding: "12px 24px",
-              background: "#2563eb",
-              color: "white",
-              borderRadius: "8px",
-              textDecoration: "none",
-              fontWeight: 600,
-              marginTop: "auto",
+              borderBottom: "2px solid var(--border-color)",
+              paddingBottom: "8px",
+              marginBottom: "8px",
             }}
           >
-            메뉴 보기
-          </a>
-        )}
+            <span
+              style={{
+                fontSize: "18px",
+                fontWeight: 600,
+                color: "var(--text-color)",
+              }}
+            >
+              메뉴
+            </span>
+          </div>
+          {shop.menuList && shop.menuList.length > 0 && (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "12px",
+                padding: "8px 0",
+              }}
+            >
+              {shop.menuList.map((menu) => (
+                <div
+                  key={menu.name}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    padding: "8px 12px",
+                    background: "var(--card-bg)",
+                    borderRadius: "8px",
+                    border: "1px solid var(--border-color)",
+                    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.05)",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontSize: "16px",
+                      color: "var(--text-color)",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {menu.name}
+                  </span>
+                  <span
+                    style={{
+                      fontSize: "16px",
+                      color: "#2563eb",
+                      fontWeight: 600,
+                    }}
+                  >
+                    {menu.price.toLocaleString()}원
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
+          {shop.menuLinkUrl && (
+            <a
+              href={shop.menuLinkUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-block",
+                padding: "12px 24px",
+                background: "#2563eb",
+                color: "white",
+                borderRadius: "8px",
+                textDecoration: "none",
+                fontWeight: 600,
+                textAlign: "center",
+                boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              메뉴 보기
+            </a>
+          )}
+        </div>
       </div>
     </>
   );
