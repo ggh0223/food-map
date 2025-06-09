@@ -530,11 +530,10 @@ export default function FloorMap() {
             style={{
               position: "fixed",
               left: 0,
-              transform: "translateY(-50%)",
               background: "var(--card-bg)",
               border: "none",
               borderRight: "1px solid var(--border-color)",
-              padding: "12px",
+              padding: "8px 16px",
               cursor: "pointer",
               boxShadow: "2px 0 8px rgba(0,0,0,0.1)",
               zIndex: 998,
