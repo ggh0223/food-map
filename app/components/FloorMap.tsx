@@ -407,6 +407,7 @@ export default function FloorMap() {
         width: "100%",
         margin: "0 auto",
         padding: "20px",
+        color: "var(--text-color)",
       }}
     >
       {/* 관리자 모드 토글 버튼 */}
@@ -416,8 +417,8 @@ export default function FloorMap() {
             onClick={handleAdminModeToggle}
             style={{
               padding: "8px 16px",
-              background: isAdminMode ? "#dc2626" : "#fff",
-              color: isAdminMode ? "#fff" : "#222",
+              background: isAdminMode ? "#dc2626" : "var(--button-bg)",
+              color: isAdminMode ? "#fff" : "var(--button-text)",
               border: "1px solid #dc2626",
               borderRadius: 6,
               fontWeight: 600,
@@ -434,8 +435,8 @@ export default function FloorMap() {
           onClick={() => handleFloorChange(1)}
           style={{
             padding: "8px 16px",
-            background: floor === 1 ? "#2563eb" : "#fff",
-            color: floor === 1 ? "#fff" : "#222",
+            background: floor === 1 ? "#2563eb" : "var(--button-bg)",
+            color: floor === 1 ? "#fff" : "var(--button-text)",
             border: "1px solid #2563eb",
             borderRadius: 6,
             fontWeight: 600,
@@ -448,8 +449,8 @@ export default function FloorMap() {
           onClick={() => handleFloorChange(2)}
           style={{
             padding: "8px 16px",
-            background: floor === 2 ? "#2563eb" : "#fff",
-            color: floor === 2 ? "#fff" : "#222",
+            background: floor === 2 ? "#2563eb" : "var(--button-bg)",
+            color: floor === 2 ? "#fff" : "var(--button-text)",
             border: "1px solid #2563eb",
             borderRadius: 6,
             fontWeight: 600,
@@ -476,6 +477,7 @@ export default function FloorMap() {
               ? "nwse-resize"
               : "pointer"
             : "default",
+          filter: "var(--svg-filter)",
         }}
         onMouseDown={handleMouseDown}
         onMouseMove={(e) => {
@@ -582,15 +584,15 @@ export default function FloorMap() {
               onClick={() => setSelectedShop(shop)}
               style={{
                 padding: 16,
-                background: "#fff",
+                background: "var(--card-bg)",
                 borderRadius: 8,
-                boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+                boxShadow: "var(--card-shadow)",
                 cursor: "pointer",
                 transition: "all 0.2s",
                 border:
                   selectedShop?.id === shop.id
                     ? "2px solid #2563eb"
-                    : "1px solid #e5e7eb",
+                    : "1px solid var(--border-color)",
               }}
             >
               <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
@@ -607,7 +609,7 @@ export default function FloorMap() {
                   >
                     {shop.name}
                   </h3>
-                  <p style={{ fontSize: 14, color: "#6b7280" }}>
+                  <p style={{ fontSize: 14, color: "var(--text-secondary)" }}>
                     {shop.description}
                   </p>
                 </div>

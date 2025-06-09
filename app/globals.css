@@ -3,6 +3,14 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --text-color: #1f2937;
+  --text-secondary: #6b7280;
+  --button-bg: #ffffff;
+  --button-text: #222222;
+  --card-bg: #ffffff;
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --border-color: #e5e7eb;
+  --svg-filter: none;
 }
 
 @theme inline {
@@ -16,6 +24,14 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --text-color: #f3f4f6;
+    --text-secondary: #9ca3af;
+    --button-bg: #1f2937;
+    --button-text: #f3f4f6;
+    --card-bg: #1f2937;
+    --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --border-color: #374151;
+    --svg-filter: invert(1);
   }
 }
 
