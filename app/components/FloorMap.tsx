@@ -477,9 +477,23 @@ export default function FloorMap() {
           height="800"
           preserveAspectRatio="xMidYMid meet"
         />
-        {/* 상가 영역들 */}
+        {/* 화살표 애니메이션 스타일 */}
+        <svg style={{ display: "none" }}>
+          <style>{`
+            .arrow-bounce {
+              animation: arrow-bounce 1s infinite alternate cubic-bezier(.4,0,.2,1);
+            }
+            @keyframes arrow-bounce {
+              0% { transform: translateY(0); }
+              100% { transform: translateY(12px); }
+            }
+          `}</style>
+        </svg>
         {shops.map((shop) => {
           const pointsArr = parsePoints(shop.points);
+          // 상단 중앙 좌표 계산 (pointsArr[0]과 pointsArr[1]의 중간)
+          const arrowX = (pointsArr[0].x + pointsArr[1].x) / 2;
+          const arrowY = Math.min(pointsArr[0].y, pointsArr[1].y) - 14; // polygon 위에 약간 띄워서
           return (
             <g key={shop.id}>
               <polygon
@@ -495,6 +509,21 @@ export default function FloorMap() {
                 strokeWidth={2}
                 onClick={() => handleClick(shop.id)}
               />
+              {/* 선택된 가게의 상단 중앙에 빨간색 ▼ 표시 */}
+              {selectedShop?.id === shop.id && (
+                <text
+                  x={arrowX}
+                  y={arrowY}
+                  textAnchor="middle"
+                  fontSize="56"
+                  fontWeight="bold"
+                  fill="#e11d48"
+                  className="arrow-bounce"
+                  style={{ pointerEvents: "none" }}
+                >
+                  ▼
+                </text>
+              )}
               <image
                 href={shop.logoUrl ? shop.logoUrl : "/icon-192x192.png"}
                 x={(pointsArr[0].x + pointsArr[2].x) / 2 - 15}
