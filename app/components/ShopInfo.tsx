@@ -162,6 +162,8 @@ export default function ShopInfo({ shop, onClose, isClosed }: ShopInfoProps) {
                 flexDirection: "column",
                 gap: "12px",
                 padding: "8px 0",
+                height: "calc(100vh - 450px)",
+                overflowY: "auto",
               }}
             >
               {shop.menuList.map((menu) => (
