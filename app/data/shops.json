@@ -100,14 +100,20 @@
       "type": "한식",
       "menuLinkUrl": null,
       "menuList": [
-        {
-          "name": "멸치국수",
-          "price": "7000"
-        },
-        {
-          "name": "만두",
-          "price": "5000"
-        }
+        { "name": "김치만두(3개)", "price": "3000" },
+        { "name": "고기만두(3개)", "price": "3000" },
+        { "name": "김치만두(6개)", "price": "6000" },
+        { "name": "고기만두(6개)", "price": "6000" },
+        { "name": "멸치국수", "price": "6000" },
+        { "name": "비빔국수", "price": "7000" },
+        { "name": "칼국수", "price": "7000" },
+        { "name": "칼만두", "price": "8000" },
+        { "name": "칼만두", "price": "8000" },
+        { "name": "떡만두국", "price": "8000" },
+        { "name": "수제비", "price": "8000" },
+        { "name": "칼제비", "price": "8000" },
+        { "name": "공기밥", "price": "1000" },
+        { "name": "모든메뉴곱배기", "price": "1000" }
       ],
       "availableInLaunch": true,
       "availableInDinner": false
@@ -137,10 +143,20 @@
       "type": "한식",
       "menuLinkUrl": null,
       "menuList": [
-        {
-          "name": "국밥",
-          "price": "7000"
-        }
+        { "name": "돼지국밥", "price": "9000" },
+        { "name": "돼지국밥 특", "price": "11000" },
+        { "name": "순대국밥", "price": "9000" },
+        { "name": "순대국밥 특", "price": "11000" },
+        { "name": "순 순대국밥", "price": "9000" },
+        { "name": "순 순대국밥 특", "price": "11000" },
+        { "name": "내장국밥", "price": "9000" },
+        { "name": "내장국밥 특", "price": "11000" },
+        { "name": "섞어국밥", "price": "9000" },
+        { "name": "섞어국밥 특", "price": "11000" },
+        { "name": "수육", "price": "30000" },
+        { "name": "수육반접시", "price": "16000" },
+        { "name": "접시순대", "price": "7000" },
+        { "name": "술국", "price": "20000" }
       ],
       "availableInLaunch": true,
       "availableInDinner": true,
@@ -156,14 +172,16 @@
       "type": "한식",
       "menuLinkUrl": null,
       "menuList": [
-        {
-          "name": "삼겹살",
-          "price": "15000"
-        },
-        {
-          "name": "목살",
-          "price": "15000"
-        }
+        { "name": "고등어세트", "price": "40000" },
+        { "name": "직화볶음(2인분)-공기밥,순두부포함", "price": "20000" },
+        { "name": "철판볶음(2인분)-순두부,계란찜포함", "price": "28000" },
+        { "name": "원조순두부", "price": "8000" },
+        { "name": "김치찌개", "price": "8000" },
+        { "name": "된장찌개", "price": "8000" },
+        { "name": "해장순두부", "price": "9000" },
+        { "name": "라면순두부", "price": "9000" },
+        { "name": "만두순두부", "price": "9000" },
+        { "name": "햄순두부", "price": "9000" }
       ],
       "availableInLaunch": true,
       "availableInDinner": true,
@@ -179,10 +197,12 @@
       "type": "한식",
       "menuLinkUrl": null,
       "menuList": [
-        {
-          "name": "칼국수",
-          "price": "8000"
-        }
+        { "name": "김치말이국수", "price": "7000" },
+        { "name": "콩국수(검은콩)", "price": "9000" },
+        { "name": "명동칼국수", "price": "8000" },
+        { "name": "들깨칼국수", "price": "8000" },
+        { "name": "해물칼국수", "price": "10000" },
+        { "name": "왕만두", "price": "6000" }
       ],
       "availableInLaunch": true,
       "availableInDinner": true,
@@ -198,14 +218,19 @@
       "type": "한식",
       "menuLinkUrl": null,
       "menuList": [
-        {
-          "name": "제육볶음",
-          "price": "8000"
-        },
-        {
-          "name": "된장찌개",
-          "price": "7000"
-        }
+        { "name": "열무국수", "price": "7500" },
+        { "name": "비빔국수", "price": "7500" },
+        { "name": "접시만두(반)", "price": "5000" },
+        { "name": "접시만두", "price": "8000" },
+        { "name": "집된장보리밥", "price": "9000" },
+        { "name": "전통비빔밥", "price": "9000" },
+        { "name": "떡국", "price": "9000" },
+        { "name": "만둣국", "price": "9000" },
+        { "name": "떡만둣국", "price": "9000" },
+        { "name": "북엇국", "price": "9000" },
+        { "name": "묵은지김치전골", "price": "9000" },
+        { "name": "얼큰버섯칼국수", "price": "9000" },
+        { "name": "동태탕", "price": "11000" }
       ],
       "availableInLaunch": true,
       "availableInDinner": true,
@@ -221,14 +246,15 @@
       "type": "한식",
       "menuLinkUrl": null,
       "menuList": [
-        {
-          "name": "제육도시락",
-          "price": "5000"
-        },
-        {
-          "name": "치킨도시락",
-          "price": "5000"
-        }
+        { "name": "동백", "price": "6200" },
+        { "name": "진달래", "price": "8000" },
+        { "name": "새치 고기고기", "price": "7100" },
+        { "name": "돈까스도련님", "price": "4900" },
+        { "name": "치킨제육", "price": "5000" },
+        { "name": "빅치킨마요", "price": "4400" },
+        { "name": "돈까스 카레", "price": "4800" },
+        { "name": "소불고기 철판볶음밥", "price": "5100" },
+        { "name": "왕카레돈까스 덮밥", "price": "6100" }
       ],
       "availableInLaunch": true,
       "availableInDinner": true,
