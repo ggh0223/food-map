@@ -28,7 +28,7 @@ export default function FloorMap() {
   const [filters, setFilters] = useState({
     launch: true,
     dinner: true,
-    type: "전체" as "전체" | Shop["type"],
+    type: "뷔페" as Shop["type"] | "전체",
   });
   const [isDrawing, setIsDrawing] = useState(false);
   const [startPoint, setStartPoint] = useState<{ x: number; y: number } | null>(
