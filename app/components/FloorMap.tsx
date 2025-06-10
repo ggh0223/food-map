@@ -574,6 +574,20 @@ export default function FloorMap() {
 
       {/* 층 선택 버튼 */}
       <div style={{ display: "flex", gap: 4, justifyContent: "flex-end" }}>
+        <div
+          style={{
+            color: "rgba(212, 26, 26, 0.5)",
+            width: "500px",
+            fontSize: 12,
+            textAlign: "center",
+            margin: 0,
+            padding: 0,
+          }}
+        >
+          디자이너 구합니다. 디자이너 구합니다. 디자이너 구합니다. 디자이너
+          구합니다. 디자이너 구합니다. 디자이너 구합니다. 디자이너 구합니다.
+          디자이너 구합니다. 디자이너 구합니다. 디자이너 구합니다.
+        </div>
         {selectedShop && isDrawerClosed && (
           <button
             onClick={() => setIsDrawerClosed(false)}
