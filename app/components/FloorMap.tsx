@@ -74,7 +74,7 @@ export default function FloorMap() {
 
   const handleShopSelect = (shop: Shop) => {
     setSelectedShop(shop);
-    // setIsDrawerClosed(false);
+    setIsDrawerClosed(true);
   };
 
   const handleClick = (id: string) => {
@@ -280,6 +280,7 @@ export default function FloorMap() {
     if (!isAdminMode) return;
     if (!draggingShopId) return;
     // 이동된 shop만 PATCH
+    console.log("movedShop", shopsState);
     const movedShop = (shopsState ||
       shopsData[floorKey(floor)] ||
       []) as Shop[];
@@ -413,6 +414,7 @@ export default function FloorMap() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedShop),
       });
+      console.log("response", response);
       if (!response.ok) throw new Error("Failed to update shop");
       // shopsState 갱신
       setShopsState((prev) =>
@@ -472,7 +474,7 @@ export default function FloorMap() {
         }}
       >
         <image
-          href={floor === 1 ? "/floor1.png" : "/floor2.png"}
+          href={floor === 1 ? "/floor1-1.png" : "/floor2-1.png"}
           width="1000"
           height="800"
           preserveAspectRatio="xMidYMid meet"

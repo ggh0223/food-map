@@ -31,6 +31,8 @@ export async function POST(request: Request) {
 export async function PATCH(request: Request) {
   try {
     const updatedShop = await request.json();
+    console.log("updatedShop", updatedShop);
+
     const filePath = path.join(process.cwd(), "app/data/shops.json");
 
     // 현재 shops.json 파일 읽기
@@ -49,6 +51,7 @@ export async function PATCH(request: Request) {
     const idx = shops[floor].findIndex(
       (shop: Shop) => shop.id === updatedShop.id
     );
+    console.log("idx", idx);
     if (idx === -1) {
       return NextResponse.json(
         { error: "상가를 찾을 수 없습니다." },
