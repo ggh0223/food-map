@@ -74,7 +74,7 @@ export default function FloorMap() {
 
   const handleShopSelect = (shop: Shop) => {
     setSelectedShop(shop);
-    setIsDrawerClosed(false);
+    // setIsDrawerClosed(false);
   };
 
   const handleClick = (id: string) => {
