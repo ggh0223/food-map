@@ -7,6 +7,20 @@ const nextConfig = withPWA({
   disable: process.env.NODE_ENV === "development",
 })({
   reactStrictMode: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "ldb-phinf.pstatic.net",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "search.pstatic.net",
+        pathname: "/**",
+      },
+    ],
+  },
 });
 
 export default nextConfig;

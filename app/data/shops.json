@@ -223,11 +223,21 @@
       "contact": "0507-1446-3323",
       "description": "한식뷔페",
       "type": "뷔페",
+      "naverBusinessId": "268601895",
       "menuLinkUrl": "https://pcmap.place.naver.com/restaurant/268601895/feed?feedType=feed",
       "menuList": null,
       "availableInLaunch": true,
       "availableInDinner": false,
-      "floor": "floor1"
+      "floor": "floor1",
+      "latestFeed": {
+        "createdString": "20251029",
+        "title": "10/29 점심메뉴",
+        "desc": "🌟 10월 29일 화요일 🌟\n\n🍖 돼지갈비찜\n\n🍠 수제 고구마튀김\n🌭 옛날 소시지 부침\n🍜 새콤 비빔국수\n\n🍄 햄·새송이 버섯볶음\n🌿 고사리나물 볶음\n🐟 불어묵 볶음\n\n🥣 소고기 미역국\n",
+        "imageUrls": [
+          "https://ldb-phinf.pstatic.net/20251029_201/1761702364891BK0kx_JPEG/IMG_5826.jpeg"
+        ],
+        "updatedAt": "2025-10-29T05:27:30.607Z"
+      }
     },
     {
       "id": "shop3",

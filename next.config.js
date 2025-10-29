@@ -8,7 +8,7 @@ const withPWA = require("next-pwa")({
 
 const nextConfig = {
   images: {
-    domains: ["search.pstatic.net"],
+    domains: ["search.pstatic.net", "ldb-phinf.pstatic.net", "k.kakaocdn.net"],
   },
 };
 
